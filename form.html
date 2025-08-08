@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Registration</title>
+</head>
+<body>
+    <h1>Event Registration</h1>
+
+    <form action="submit.php" method="post">
+        <!-- Full Name -->
+        <p>
+            <label for="fullname">Full Name:</label><br>
+            <input type="text" id="fullname" name="fullname" required>
+        </p>
+
+        <!-- Email -->
+        <p>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required>
+        </p>
+
+        <!-- Phone Number -->
+        <p>
+            <label for="phone">Phone Number (Format: 123-456-7890):</label><br>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+        </p>
+
+        <!-- Number of Attendees -->
+        <p>
+            <label for="attendees">Number of Attendees (1–10):</label><br>
+            <input type="number" id="attendees" name="attendees" min="1" max="10" required>
+        </p>
+
+        <!-- Event Date -->
+        <p>
+            <label for="event-date">Event Date:</label><br>
+            <input type="date" id="event-date" name="event-date" min="2025-08-09" required>
+        </p>
+
+        <!-- Event Time -->
+        <p>
+            <label for="event-time">Event Time:</label><br>
+            <input type="time" id="event-time" name="event-time" required>
+        </p>
+
+        <!-- Event Type -->
+        <p>
+            <label for="event-type">Event Type:</label><br>
+            <select id="event-type" name="event-type" required>
+                <option value="" disabled selected>Select an event type</option>
+                <option value="conference">Conference</option>
+                <option value="workshop">Workshop</option>
+                <option value="webinar">Webinar</option>
+            </select>
+        </p>
+
+        <!-- Dietary Restrictions -->
+        <p>
+            <label>Dietary Restrictions:</label><br>
+            <input type="checkbox" id="vegetarian" name="diet[]" value="Vegetarian">
+            <label for="vegetarian">Vegetarian</label><br>
+
+            <input type="checkbox" id="gluten-free" name="diet[]" value="Gluten-Free">
+            <label for="gluten-free">Gluten-Free</label>
+        </p>
+
+        <!-- T-shirt Size -->
+        <p>
+            <label>T-shirt Size:</label><br>
+            <input type="radio" id="size-s" name="tshirt-size" value="S" required>
+            <label for="size-s">S</label>
+
+            <input type="radio" id="size-m" name="tshirt-size" value="M">
+            <label for="size-m">M</label>
+
+            <input type="radio" id="size-l" name="tshirt-size" value="L">
+            <label for="size-l">L</label>
+
+            <input type="radio" id="size-xl" name="tshirt-size" value="XL">
+            <label for="size-xl">XL</label>
+        </p>
+
+        <!-- Comments/Questions -->
+        <p>
+            <label for="comments">Comments/Questions:</label><br>
+            <textarea id="comments" name="comments" maxlength="250" rows="4" cols="40"></textarea>
+        </p>
+
+        <!-- Submit Button -->
+        <p>
+            <button type="submit">Submit</button>
+        </p>
+    </form>
+</body>
+</html>
