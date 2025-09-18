@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inspire 2025 - Event Landing Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-sans antialiased">
+
+  <!-- Navbar -->
+  <header class="w-full bg-white shadow-md fixed top-0 left-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <h1 class="text-2xl font-bold text-indigo-600">EventX</h1>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-10">
+        <nav class="flex space-x-8 text-gray-700 font-medium">
+          <a href="#about" class="hover:text-indigo-600 transition-colors">About</a>
+          <a href="#speakers" class="hover:text-indigo-600 transition-colors">Speakers</a>
+          <a href="#schedule" class="hover:text-indigo-600 transition-colors">Schedule</a>
+        </nav>
+        
+        <!-- Register Button -->
+        <a href="#register" 
+           class="px-5 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition-colors text-base font-semibold">
+          Register
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" 
+              class="md:hidden p-2 text-gray-700 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded">
+        <svg id="hamburgerIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav id="mobileMenu" 
+         class="md:hidden absolute top-full left-0 w-full bg-white shadow-lg transform -translate-y-2 opacity-0 invisible transition-all duration-300 ease-in-out">
+      <div class="px-4 py-4 space-y-4">
+        <a href="#about" class="block text-gray-700 font-medium hover:text-indigo-600 transition-colors">About</a>
+        <a href="#speakers" class="block text-gray-700 font-medium hover:text-indigo-600 transition-colors">Speakers</a>
+        <a href="#schedule" class="block text-gray-700 font-medium hover:text-indigo-600 transition-colors">Schedule</a>
+        <a href="#register" 
+           class="block w-full px-4 py-3 bg-indigo-600 text-white text-center rounded-lg shadow hover:bg-indigo-700 transition-colors">
+          Register
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section Full Screen -->
+  <section class="relative h-screen bg-gradient-to-r from-purple-600 via-pink-500 to-red-400 text-white flex items-center justify-center text-center">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+        Ignite Your Creativity at 
+        <span class="text-yellow-300 block md:inline">Inspire 2025</span>
+      </h2>
+      <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
+        Join visionaries and innovators for a two-day celebration of ideas, tech, and art.
+      </p>
+      <a href="#reserve" 
+         class="inline-block px-8 py-4 bg-white text-purple-700 font-semibold rounded-full shadow-lg hover:bg-gray-100 hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+        Reserve Your Seat
+      </a>
+    </div>
+
+    <!-- Decorative Background -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute -top-6 -left-6 w-28 h-28 bg-white bg-opacity-10 rounded-full animate-pulse"></div>
+      <div class="absolute top-1/4 right-10 w-16 h-16 bg-yellow-300 bg-opacity-20 rounded-full animate-bounce"></div>
+      <div class="absolute bottom-10 left-1/4 w-14 h-14 bg-white bg-opacity-10 rounded-full animate-pulse delay-1000"></div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script>
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const hamburgerIcon = document.getElementById('hamburgerIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    let isMenuOpen = false;
+
+    function toggleMobileMenu() {
+      isMenuOpen = !isMenuOpen;
+      if (isMenuOpen) {
+        mobileMenu.classList.remove('-translate-y-2', 'opacity-0', 'invisible');
+        mobileMenu.classList.add('translate-y-0', 'opacity-100', 'visible');
+        hamburgerIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      } else {
+        mobileMenu.classList.add('-translate-y-2', 'opacity-0', 'invisible');
+        mobileMenu.classList.remove('translate-y-0', 'opacity-100', 'visible');
+        hamburgerIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    }
+
+    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+    // Close menu when clicking link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => isMenuOpen && toggleMobileMenu());
+    });
+
+    // Close menu on outside click
+    document.addEventListener('click', (e) => {
+      if (isMenuOpen && !mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+        toggleMobileMenu();
+      }
+    });
+
+    // Auto-close when resizing to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768 && isMenuOpen) toggleMobileMenu();
+    });
+  </script>
+<!-- About Section -->
+<section id="about" class="h-screen flex flex-col items-center justify-center bg-gray-900 text-white px-6 text-center">
+  <div class="max-w-4xl">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6">About the Event</h2>
+    <p class="text-lg md:text-xl leading-relaxed">
+      <span class="font-semibold text-yellow-300">Inspire 2025</span> is a premier conference bringing together creators, 
+      developers, and entrepreneurs to explore cutting-edge ideas and transformative technologies.
+    </p>
+  </div>
+</section>
+<!-- Event Schedule Section -->
+<section id="schedule" class="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white px-6 py-16">
+  <div class="max-w-5xl mx-auto w-full">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Event Schedule</h2>
+    
+    <div class="space-y-6">
+      <!-- Day 1 -->
+      <div class="bg-gray-800 rounded-2xl shadow-lg p-6 flex justify-between items-center hover:shadow-2xl transition-all">
+        <div>
+          <h3 class="text-xl font-semibold">Day 1 – Vision & Innovation</h3>
+          <p class="text-gray-300">Keynotes and product showcases.</p>
+        </div>
+        <span class="text-gray-400 text-sm">10:00 AM – 5:00 PM</span>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="bg-gray-800 rounded-2xl shadow-lg p-6 flex justify-between items-center hover:shadow-2xl transition-all">
+        <div>
+          <h3 class="text-xl font-semibold">Day 2 – Workshops & Networking</h3>
+          <p class="text-gray-300">Interactive sessions and meetings.</p>
+        </div>
+        <span class="text-gray-400 text-sm">10:00 AM – 4:00 PM</span>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Event Highlights Section -->
+<section id="highlights" class="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white px-6 py-16">
+  <div class="max-w-6xl mx-auto w-full">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Event Highlights</h2>
+
+    <!-- Grid Layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Highlight 1 -->
+      <div class="bg-gray-800 rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition-all">
+        <div class="text-4xl mb-4">🎤</div>
+        <h3 class="text-xl font-semibold mb-2">Keynote Talks</h3>
+        <p class="text-gray-300">Hear from industry leaders shaping tomorrow’s world.</p>
+      </div>
+
+      <!-- Highlight 2 -->
+      <div class="bg-gray-800 rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition-all">
+        <div class="text-4xl mb-4">🛠️</div>
+        <h3 class="text-xl font-semibold mb-2">Hands-on Workshops</h3>
+        <p class="text-gray-300">Gain practical skills with expert-led sessions.</p>
+      </div>
+
+      <!-- Highlight 3 -->
+      <div class="bg-gray-800 rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition-all md:col-span-2 lg:col-span-1">
+        <div class="text-4xl mb-4">🤝</div>
+        <h3 class="text-xl font-semibold mb-2">Networking</h3>
+        <p class="text-gray-300">Connect with peers and potential collaborators.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+</body>
+</html>
